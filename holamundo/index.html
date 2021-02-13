@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h1>{{mayusculasTexto}}</h1>
+      <h2 class="bg-dark" :class="colorCantidad">
+        Mi saldo disponible es: {{cantidad}}
+      </h2>
+
+      <a :href="enlace">Ir a youtube</a>
+      <hr />
+      <h2 v-if="estado">Cuenta activa</h2>
+      <h2 v-else>Cuenta desactivada</h2>
+
+      <h2 v-if="cantidad > 500">Cantidad: {{cantidad}}</h2>
+      <h2 v-else-if="cantidad <=500 && catndidad > 0">
+        Cantidad: <span style="color: red">{{cantidad}}</span>
+      </h2>
+      <h2 v-else>Sin cantidad {{cantidad}}</h2>
+
+      <hr />
+      <h2>Mis servicios disponibles</h2>
+      <ul>
+        <li v-for="(servicio, index) in servicios">
+          {{`${index+2} - ${servicio}`}}
+        </li>
+      </ul>
+
+      <button v-on:click="agregarSaldo">AgregarSaldo</button>
+      <button @click="agregarSaldo">AgregarSaldo</button>
+      <hr />
+      <button @click="disminuirSaldo" :disabled="desactivar">
+        DisminuirSaldo
+      </button>
+      <footer-banco cantidad={{cantidad}} />
+      
+    </div>
+
+    <script src="main.js"></script>
+    <script src="components/Footer.js"></script>
+    <script>
+      app.mount("#app");
+    </script>
+  </body>
+</html>
